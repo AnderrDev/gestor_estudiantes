@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/layoutEstudiantes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <EditText
+            android:id="@+id/etNombreEstudiante"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nombre del estudiante" />
+
+        <EditText
+            android:id="@+id/etApellidoEstudiante"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Apellido del estudiante" />
+
+        <!-- Código -->
+        <EditText
+            android:id="@+id/etCodigoEstudiante"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Código del estudiante" />
+
+        <EditText
+            android:id="@+id/etCorreoEstudiante"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Correo electrónico" />
+
+        <Button
+            android:id="@+id/btnGuardarEstudiante"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Guardar" />
+
+        <Button
+            android:id="@+id/btnListarEstudiantes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Listar todos" />
+
+        <Button
+            android:id="@+id/btnCargarDesdeApi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Cargar desde Ministerio de Educación"/>
+
+        <ListView
+            android:id="@+id/listViewEstudiantes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+</ScrollView>

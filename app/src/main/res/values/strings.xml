@@ -1,0 +1,52 @@
+<resources>
+    <!-- App -->
+    <string name="app_name">Gestión de Estudiantes</string>
+
+    <!-- LoginActivity -->
+    <string name="etUsername_hint">Usuario</string>
+    <string name="etPassword_hint">Contraseña</string>
+    <string name="btnLogin">Iniciar sesión</string>
+    <string name="btnRegister">Registrar usuario</string>
+
+    <!-- MainActivity -->
+    <string name="btnEstudiantes">Estudiantes</string>
+    <string name="btnMaterias">Materias</string>
+    <string name="btnDocentes">Docentes</string>
+    <string name="btnCalificaciones">Calificaciones</string>
+    <string name="btnLogout">Cerrar sesión</string>
+
+    <!-- EstudianteActivity -->
+    <string name="etNombreEstudiante_hint">Nombre del estudiante</string>
+    <string name="etApellidoEstudiante_hint">Apellido del estudiante</string>
+    <string name="etCodigoEstudiante_hint">Código del estudiante</string>
+    <string name="btnGuardarEstudiante">Guardar</string>
+    <string name="btnListarEstudiantes">Listar todos</string>
+
+    <!-- MateriaActivity -->
+    <string name="etCodigoMateria_hint">Código de la materia</string>
+    <string name="etNombreMateria_hint">Nombre de la materia</string>
+    <string name="btnGuardarMateria">Guardar</string>
+    <string name="btnBuscarMateria">Buscar</string>
+
+    <!-- DocenteActivity -->
+    <string name="etDocumentoDocente_hint">Documento del docente</string>
+    <string name="etNombreDocente_hint">Nombre del docente</string>
+    <string name="etCorreoDocente_hint">Correo del docente</string>
+    <string name="btnGuardarDocente">Guardar</string>
+    <string name="btnBuscarDocente">Buscar</string>
+
+    <!-- CalificacionActivity -->
+    <string name="etIdEstudiante_hint">ID del estudiante</string>
+    <string name="etIdMateria_hint">ID de la materia</string>
+    <string name="etNota_hint">Nota</string>
+    <string name="btnGuardarCalificacion">Guardar</string>
+    <string name="btnBuscarCalificacion">Buscar</string>
+
+    <!-- Mensajes -->
+    <string name="msg_fill_fields">Por favor, completa todos los campos</string>
+    <string name="msg_error_save">Error al guardar</string>
+    <string name="msg_saved_success">Guardado exitosamente</string>
+    <string name="msg_login_failed">Usuario o contraseña incorrectos</string>
+    <string name="msg_user_exists">El usuario ya existe</string>
+    <string name="msg_user_registered">Usuario registrado, inicia sesión</string>
+</resources>
