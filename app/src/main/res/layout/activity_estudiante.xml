@@ -1,63 +1,160 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/main"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    android:padding="16dp">
 
-    <LinearLayout
-        android:id="@+id/layoutEstudiantes"
-        android:layout_width="match_parent"
+    <!-- Loader centrado -->
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="16dp">
+        android:visibility="gone"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
-        <EditText
-            android:id="@+id/etNombreEstudiante"
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Nombre del estudiante" />
+            android:orientation="vertical"
+            android:padding="16dp"
+            android:background="@color/white"
+            android:elevation="4dp"
+            android:layout_margin="8dp"
+            android:clipToPadding="false">
 
-        <EditText
-            android:id="@+id/etApellidoEstudiante"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Apellido del estudiante" />
+            <!-- Nombre -->
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/nombre"
+                app:boxBackgroundMode="outline"
+                app:boxCornerRadiusTopStart="8dp"
+                app:boxCornerRadiusTopEnd="8dp"
+                app:boxCornerRadiusBottomStart="8dp"
+                app:boxCornerRadiusBottomEnd="8dp">
 
-        <!-- Código -->
-        <EditText
-            android:id="@+id/etCodigoEstudiante"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Código del estudiante" />
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etNombreEstudiante"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-        <EditText
-            android:id="@+id/etCorreoEstudiante"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Correo electrónico" />
+            <!-- Apellido -->
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/apellido"
+                android:layout_marginTop="8dp"
+                app:boxBackgroundMode="outline"
+                app:boxCornerRadiusTopStart="8dp"
+                app:boxCornerRadiusTopEnd="8dp"
+                app:boxCornerRadiusBottomStart="8dp"
+                app:boxCornerRadiusBottomEnd="8dp">
 
-        <Button
-            android:id="@+id/btnGuardarEstudiante"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Guardar" />
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etApellidoEstudiante"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-        <Button
-            android:id="@+id/btnListarEstudiantes"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Listar todos" />
+            <!-- Código -->
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/c_digo"
+                android:layout_marginTop="8dp"
+                app:boxBackgroundMode="outline"
+                app:boxCornerRadiusTopStart="8dp"
+                app:boxCornerRadiusTopEnd="8dp"
+                app:boxCornerRadiusBottomStart="8dp"
+                app:boxCornerRadiusBottomEnd="8dp">
 
-        <Button
-            android:id="@+id/btnCargarDesdeApi"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Cargar desde Ministerio de Educación"/>
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etCodigoEstudiante"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-        <ListView
-            android:id="@+id/listViewEstudiantes"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            <!-- Email -->
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/correo_electr_nico"
+                android:layout_marginTop="8dp"
+                app:boxBackgroundMode="outline"
+                app:boxCornerRadiusTopStart="8dp"
+                app:boxCornerRadiusTopEnd="8dp"
+                app:boxCornerRadiusBottomStart="8dp"
+                app:boxCornerRadiusBottomEnd="8dp">
 
-    </LinearLayout>
-</ScrollView>
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etCorreoEstudiante"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textEmailAddress" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- Botón Guardar -->
+            <Button
+                android:id="@+id/btnGuardarEstudiante"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Guardar Estudiante"
+                android:backgroundTint="@color/primary"
+                android:textColor="@android:color/white"
+                android:background="@drawable/rounded_button" />
+
+            <!-- Botón Listar -->
+            <Button
+                android:id="@+id/btnListarEstudiantes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/listar_estudiantes"
+                android:backgroundTint="@color/primary_light"
+                android:textColor="@android:color/white"
+                android:background="@drawable/rounded_button" />
+
+            <!-- Botón Cargar Desde API -->
+            <Button
+                android:id="@+id/btnCargarDesdeApi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/cargar_desde_ministerio"
+                android:backgroundTint="@color/primary_light"
+                android:textColor="@android:color/white"
+                android:background="@drawable/rounded_button" />
+
+            <!-- Lista -->
+            <ListView
+                android:id="@+id/listViewEstudiantes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="@color/white"
+                android:divider="@color/background"
+                android:dividerHeight="1dp" />
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

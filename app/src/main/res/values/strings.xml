@@ -40,7 +40,7 @@
     <string name="etIdMateria_hint">ID de la materia</string>
     <string name="etNota_hint">Nota</string>
     <string name="btnGuardarCalificacion">Guardar</string>
-    <string name="btnBuscarCalificacion">Buscar</string>
+    <string name="btnBuscarCalificacion">Listar</string>
 
     <!-- Mensajes -->
     <string name="msg_fill_fields">Por favor, completa todos los campos</string>
@@ -49,4 +49,24 @@
     <string name="msg_login_failed">Usuario o contraseña incorrectos</string>
     <string name="msg_user_exists">El usuario ya existe</string>
     <string name="msg_user_registered">Usuario registrado, inicia sesión</string>
+    <string name="nombre_apellido">Nombre Apellido</string>
+    <string name="c_digo">Código</string>
+    <string name="correo_electr_nico">Correo electrónico</string>
+    <string name="documento">Documento</string>
+    <string name="nombre">Nombre</string>
+    <string name="guardar_docente">Guardar Docente</string>
+    <string name="listar_docentes">Listar Docentes</string>
+    <string name="apellido">Apellido</string>
+    <string name="listar_estudiantes">Listar Estudiantes</string>
+    <string name="cargar_desde_ministerio">Cargar desde Ministerio</string>
+    <string name="c_digo_de_materia">Código de materia</string>
+    <string name="nombre_de_materia">Nombre de materia</string>
+    <string name="guardar_materia">Guardar Materia</string>
+    <string name="listar_materias">Listar Materias</string>
+    <string name="estudiante_id">Estudiante ID</string>
+    <string name="materia_id">Materia ID</string>
+    <string name="nota">Nota</string>
+    <string name="nombre_del_docente">Nombre del Docente</string>
+    <string name="documentoq">Documento</string>
+    <string name="nombre_de_la_materia">Nombre de la Materia</string>
 </resources>

@@ -4,70 +4,141 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/main"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:padding="24dp">
 
-    <!-- Título o Logo -->
+    <!-- Logo / Nombre de la App -->
     <TextView
         android:id="@+id/tvAppName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/app_name"
-        android:textAppearance="?attr/textAppearanceHeadline5"
+        android:textSize="28sp"
+        android:textStyle="bold"
         android:gravity="center"
-        android:padding="16dp"
+        android:textColor="@color/black"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp" />
 
-    <!-- Botones de navegación -->
+    <!-- Contenedor de tarjetas -->
     <LinearLayout
-        android:id="@+id/buttonContainer"
+        android:id="@+id/cardContainer"
         android:orientation="vertical"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:gravity="center"
+        android:layout_marginTop="32dp"
         app:layout_constraintTop_toBottomOf="@id/tvAppName"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
-        <Button
-            android:id="@+id/btnEstudiantes"
+        <!-- Estudiantes -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardEstudiantes"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/btnEstudiantes"
-            android:layout_marginVertical="8dp"/>
+            android:layout_marginVertical="8dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="1dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?attr/selectableItemBackground">
 
-        <Button
-            android:id="@+id/btnMaterias"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/btnMaterias"
-            android:layout_marginVertical="8dp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/btnEstudiantes"
+                android:padding="16dp"
+                android:gravity="center"
+                android:textSize="18sp"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
+        </com.google.android.material.card.MaterialCardView>
 
-        <Button
-            android:id="@+id/btnDocentes"
+        <!-- Materias -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardMaterias"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/btnDocentes"
-            android:layout_marginVertical="8dp"/>
+            android:layout_marginVertical="8dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="1dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?attr/selectableItemBackground">
 
-        <Button
-            android:id="@+id/btnCalificaciones"
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/btnMaterias"
+                android:padding="16dp"
+                android:gravity="center"
+                android:textSize="18sp"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Docentes -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardDocentes"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/btnCalificaciones"
-            android:layout_marginVertical="8dp"/>
+            android:layout_marginVertical="8dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="1dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?attr/selectableItemBackground">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/btnDocentes"
+                android:padding="16dp"
+                android:gravity="center"
+                android:textSize="18sp"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Calificaciones -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardCalificaciones"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="8dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="1dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?attr/selectableItemBackground">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/btnCalificaciones"
+                android:padding="16dp"
+                android:gravity="center"
+                android:textSize="18sp"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
+        </com.google.android.material.card.MaterialCardView>
+
     </LinearLayout>
 
-    <!-- Botón de Cerrar Sesión -->
+    <!-- Botón Logout -->
     <Button
         android:id="@+id/btnLogout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/btnLogout"
-        android:layout_margin="16dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

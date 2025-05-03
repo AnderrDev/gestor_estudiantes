@@ -2,7 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -15,30 +14,36 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GestionEstudiantes"
         tools:targetApi="31">
+
         <activity
-            android:name=".CalificacionActivity"
+            android:name=".presentation.calificacion.CalificacionActivity"
             android:exported="false" />
+
         <activity
-            android:name=".DocenteActivity"
+            android:name=".presentation.docente.DocenteActivity"
             android:exported="false" />
+
         <activity
-            android:name=".MateriaActivity"
+            android:name=".presentation.materia.MateriaActivity"
             android:exported="false" />
+
         <activity
-            android:name=".EstudianteActivity"
+            android:name=".presentation.estudiante.EstudianteActivity"
             android:exported="false" />
+
         <activity
-            android:name=".LoginActivity"
+            android:name=".presentation.login.LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
-            android:name=".MainActivity"
-            android:exported="false">
-          </activity>
+            android:name=".presentation.main.MainActivity"
+            android:exported="false" />
+
     </application>
 
 </manifest>

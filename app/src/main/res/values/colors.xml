@@ -1,5 +1,15 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <!-- Primary colors -->
+    <color name="primary">#1976D2</color> <!-- Azul Principal -->
+    <color name="primary_dark">#1565C0</color> <!-- Azul Oscuro -->
+    <color name="primary_light">#63A4FF</color> <!-- Azul Claro -->
+
+    <!-- Neutral colors -->
+    <color name="background">#F5F5F5</color> <!-- Fondo general -->
+    <color name="text_primary">#212121</color> <!-- Texto principal -->
+    <color name="text_secondary">#9E9E9E</color> <!-- Texto secundario -->
+
+    <!-- Basics -->
+    <color name="white">#FFFFFF</color> <!-- Blanco -->
+    <color name="black">#000000</color> <!-- Negro -->
 </resources>

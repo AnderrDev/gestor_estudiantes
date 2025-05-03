@@ -1,43 +1,116 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background"
     android:padding="16dp">
 
-    <EditText
-        android:id="@+id/etDocumentoDocente"
-        android:layout_width="match_parent"
+    <!-- Loader bonito (oculto al inicio) -->
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="Documento" />
+        android:visibility="gone"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
-    <EditText
-        android:id="@+id/etNombreDocente"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Nombre" />
-
-    <EditText
-        android:id="@+id/etCorreoDocente"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Correo electrónico" />
-
-    <Button
-        android:id="@+id/btnGuardarDocente"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Guardar" />
-
-    <Button
-        android:id="@+id/btnListarDocentes"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Listar" />
-
-    <ListView
-        android:id="@+id/lvDocentes"
-        android:layout_width="match_parent"
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_weight="1" />
-</LinearLayout>
+        android:fillViewport="true"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp"
+            android:background="@color/white"
+            android:elevation="4dp"
+            android:layout_margin="8dp"
+            android:clipToPadding="false">
+
+            <!-- Documento de docente -->
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/documento">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etDocumentoDocente"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/text_primary" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- Nombre de docente -->
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/nombre">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etNombreDocente"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/text_primary" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- Correo de docente -->
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/correo_electr_nico">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etCorreoDocente"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/text_primary"
+                    android:inputType="textEmailAddress" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- Botón Guardar -->
+            <Button
+                android:id="@+id/btnGuardarDocente"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/guardar_docente"
+                android:backgroundTint="@color/primary"
+                android:textColor="@color/white"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/rounded_button" />
+
+            <!-- Botón Listar -->
+            <Button
+                android:id="@+id/btnListarDocentes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/listar_docentes"
+                android:backgroundTint="@color/primary_light"
+                android:textColor="@color/white"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/rounded_button" />
+
+            <!-- Lista de docentes -->
+            <ListView
+                android:id="@+id/lvDocentes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:divider="@android:color/darker_gray"
+                android:dividerHeight="1dp" />
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
