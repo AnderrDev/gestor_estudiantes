@@ -231,6 +231,20 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return estudiante;
     }
 
+    /**
+     * Elimina un estudiante por su código.
+     */
+
+    public boolean eliminarEstudiantePorCodigo(@NonNull String codigo) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        int deletedRows = db.delete(
+                "Estudiante",
+                "codigo = ?",
+                new String[]{codigo}
+        );
+        return deletedRows > 0;
+    }
+
     // ========== Docente ==========
 
     /**

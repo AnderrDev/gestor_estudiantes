@@ -27,4 +27,9 @@ public class EstudianteRepositoryImpl implements EstudianteRepository {
     public Estudiante getEstudianteByCodigo(String codigo) {
         return dbHelper.obtenerEstudiantePorCodigo(codigo);
     }
+    @Override
+    public boolean deleteEstudianteByCodigo(String codigo) {
+        return dbHelper.eliminarEstudiantePorCodigo(codigo);
+    }
+
 }

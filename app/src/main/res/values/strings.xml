@@ -69,4 +69,11 @@
     <string name="nombre_del_docente">Nombre del Docente</string>
     <string name="documentoq">Documento</string>
     <string name="nombre_de_la_materia">Nombre de la Materia</string>
+    <string name="guardar_estudiante">Guardar Estudiante</string>
+    <string name="buscar_estudiante">Buscar Estudiante</string>
+    <string name="eliminar">Eliminar</string>
+    <string name="guardar">Guardar</string>
+    <string name="buscar">Buscar</string>
+    <string name="listar">Listar</string>
+    <string name="cargar_desde_api">Cargar Desde API</string>
 </resources>

@@ -7,6 +7,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.core.graphics.Insets;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import co.uniminuto.gestionestudiantes.R;
@@ -16,23 +17,18 @@ import co.uniminuto.gestionestudiantes.data.models.Estudiante;
 import co.uniminuto.gestionestudiantes.data.repositories.EstudianteRepositoryImpl;
 import co.uniminuto.gestionestudiantes.domain.repositories.EstudianteRepository;
 import co.uniminuto.gestionestudiantes.domain.usecases.estudiante.AddEstudianteUseCase;
+import co.uniminuto.gestionestudiantes.domain.usecases.estudiante.DeleteEstudianteUseCase;
 import co.uniminuto.gestionestudiantes.domain.usecases.estudiante.GetEstudiantesUseCase;
 import co.uniminuto.gestionestudiantes.domain.usecases.estudiante.GetEstudianteByCodigoUseCase;
 import co.uniminuto.gestionestudiantes.domain.usecases.estudiante.LoadEstudiantesFromApiUseCase;
 
 /**
- * EstudianteActivity permite agregar nuevos estudiantes, listar estudiantes existentes
- * y cargar datos desde un servicio API externo.
+ * EstudianteActivity gestiona la creación, búsqueda, listado y eliminación de estudiantes.
  */
 public class EstudianteActivity extends AppCompatActivity {
 
-    private EditText etNombre;
-    private EditText etApellido;
-    private EditText etCodigo;
-    private EditText etCorreo;
-    private Button btnGuardar;
-    private Button btnListar;
-    private Button btnCargarDesdeApi;
+    private EditText etNombre, etApellido, etCodigo, etCorreo;
+    private Button btnGuardar, btnListar, btnCargarDesdeApi, btnBuscar, btnEliminar;
     private ListView lvEstudiantes;
     private ProgressBar progressBar;
 
@@ -40,6 +36,7 @@ public class EstudianteActivity extends AppCompatActivity {
     private GetEstudiantesUseCase getEstudiantesUseCase;
     private LoadEstudiantesFromApiUseCase loadEstudiantesFromApiUseCase;
     private GetEstudianteByCodigoUseCase getEstudianteByCodigoUseCase;
+    private DeleteEstudianteUseCase deleteEstudianteUseCase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,9 +49,6 @@ public class EstudianteActivity extends AppCompatActivity {
         configurarEventos();
     }
 
-    /**
-     * Configura los márgenes de la vista principal respetando las barras del sistema.
-     */
     private void configurarInsets() {
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets bars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
@@ -63,46 +57,39 @@ public class EstudianteActivity extends AppCompatActivity {
         });
     }
 
-    /**
-     * Inicializa las vistas de la pantalla.
-     */
     private void inicializarVistas() {
-        etNombre         = findViewById(R.id.etNombreEstudiante);
-        etApellido       = findViewById(R.id.etApellidoEstudiante);
-        etCodigo         = findViewById(R.id.etCodigoEstudiante);
-        etCorreo         = findViewById(R.id.etCorreoEstudiante);
-        btnGuardar       = findViewById(R.id.btnGuardarEstudiante);
-        btnListar        = findViewById(R.id.btnListarEstudiantes);
-        btnCargarDesdeApi= findViewById(R.id.btnCargarDesdeApi);
-        lvEstudiantes    = findViewById(R.id.listViewEstudiantes);
-        progressBar      = findViewById(R.id.progressBar);
+        etNombre          = findViewById(R.id.etNombreEstudiante);
+        etApellido        = findViewById(R.id.etApellidoEstudiante);
+        etCodigo          = findViewById(R.id.etCodigoEstudiante);
+        etCorreo          = findViewById(R.id.etCorreoEstudiante);
+        btnGuardar        = findViewById(R.id.btnGuardarEstudiante);
+        btnListar         = findViewById(R.id.btnListarEstudiantes);
+        btnCargarDesdeApi = findViewById(R.id.btnCargarDesdeApi);
+        btnBuscar         = findViewById(R.id.btnBuscarEstudiante);
+        btnEliminar       = findViewById(R.id.btnEliminarEstudiante);
+        lvEstudiantes     = findViewById(R.id.listViewEstudiantes);
+        progressBar       = findViewById(R.id.progressBar);
     }
 
-    /**
-     * Inicializa las dependencias necesarias de la base de datos y servicios API.
-     */
     private void inicializarDependencias() {
         DatabaseHelper dbHelper = new DatabaseHelper(this);
         EstudianteRepository estudianteRepository = new EstudianteRepositoryImpl(dbHelper);
-        addEstudianteUseCase = new AddEstudianteUseCase(estudianteRepository);
-        getEstudiantesUseCase = new GetEstudiantesUseCase(estudianteRepository);
+
+        addEstudianteUseCase          = new AddEstudianteUseCase(estudianteRepository);
+        getEstudiantesUseCase         = new GetEstudiantesUseCase(estudianteRepository);
         loadEstudiantesFromApiUseCase = new LoadEstudiantesFromApiUseCase(new EstudianteApiService());
-        getEstudianteByCodigoUseCase = new GetEstudianteByCodigoUseCase(estudianteRepository);
+        getEstudianteByCodigoUseCase  = new GetEstudianteByCodigoUseCase(estudianteRepository);
+        deleteEstudianteUseCase       = new DeleteEstudianteUseCase(estudianteRepository);
     }
 
-    /**
-     * Configura los listeners de los botones.
-     */
     private void configurarEventos() {
         btnGuardar.setOnClickListener(v -> guardarEstudiante());
         btnListar.setOnClickListener(v -> listarEstudiantes());
         btnCargarDesdeApi.setOnClickListener(v -> cargarDesdeApi());
+        btnBuscar.setOnClickListener(v -> buscarEstudiante());
+        btnEliminar.setOnClickListener(v -> eliminarEstudiante());
     }
 
-    /**
-     * Guarda un nuevo estudiante en la base de datos tras validar los datos ingresados.
-     * Si el código ya existe, muestra un mensaje de error.
-     */
     private void guardarEstudiante() {
         String nombre   = etNombre.getText().toString().trim();
         String apellido = etApellido.getText().toString().trim();
@@ -130,11 +117,6 @@ public class EstudianteActivity extends AppCompatActivity {
         }
     }
 
-    /**
-     * Valida los campos ingresados en el formulario.
-     *
-     * @return true si son válidos, false si hay errores.
-     */
     private boolean validarCampos(String nombre, String apellido, String codigo, String correo) {
         if (nombre.isEmpty() || apellido.isEmpty() || codigo.isEmpty() || correo.isEmpty()) {
             mostrarMensaje("Completa todos los campos");
@@ -159,10 +141,6 @@ public class EstudianteActivity extends AppCompatActivity {
         return true;
     }
 
-    /**
-     * Lista todos los estudiantes registrados en la base de datos.
-     * Muestra un loader mientras se consulta.
-     */
     private void listarEstudiantes() {
         mostrarLoader(true);
         new Thread(() -> {
@@ -179,9 +157,6 @@ public class EstudianteActivity extends AppCompatActivity {
         }).start();
     }
 
-    /**
-     * Carga estudiantes desde un servicio web y los guarda en la base de datos local.
-     */
     private void cargarDesdeApi() {
         mostrarLoader(true);
         new Thread(() -> {
@@ -203,9 +178,62 @@ public class EstudianteActivity extends AppCompatActivity {
         }).start();
     }
 
-    /**
-     * Limpia los campos de entrada del formulario.
-     */
+    private void buscarEstudiante() {
+        String codigo = etCodigo.getText().toString().trim();
+
+        if (codigo.isEmpty()) {
+            mostrarMensaje("Ingrese el código del estudiante para buscar");
+            return;
+        }
+
+        Estudiante estudiante = getEstudianteByCodigoUseCase.execute(codigo);
+
+        if (estudiante != null) {
+            // Crear una lista temporal para mostrar solo el estudiante encontrado
+            List<Estudiante> resultado = new ArrayList<>();
+            resultado.add(estudiante);
+
+            EstudianteAdapter adapter = new EstudianteAdapter(this, resultado);
+            lvEstudiantes.setAdapter(adapter);
+            limpiarCampos();
+            mostrarMensaje("Estudiante encontrado");
+        } else {
+            mostrarMensaje("No se encontró ningún estudiante con ese código");
+        }
+    }
+
+
+    private void eliminarEstudiante() {
+        String codigo = etCodigo.getText().toString().trim();
+
+        if (codigo.isEmpty()) {
+            mostrarMensaje("Ingrese el código del estudiante a eliminar");
+            return;
+        }
+
+        // Mostrar diálogo de confirmación
+        new androidx.appcompat.app.AlertDialog.Builder(this)
+                .setTitle("Confirmar eliminación")
+                .setMessage("¿Estás seguro de que quieres eliminar este estudiante?")
+                .setPositiveButton("Eliminar", (dialog, which) -> {
+                    boolean eliminado = deleteEstudianteUseCase.execute(codigo);
+
+                    if (eliminado) {
+                        mostrarMensaje("Estudiante eliminado correctamente");
+                        limpiarCampos();
+                        listarEstudiantes();
+                    } else {
+                        mostrarMensaje("No se pudo eliminar el estudiante");
+                    }
+                })
+                .setNegativeButton("Cancelar", (dialog, which) -> {
+                    dialog.dismiss();
+                    mostrarMensaje("Operación cancelada");
+                })
+                .show();
+    }
+
+
     private void limpiarCampos() {
         etNombre.setText("");
         etApellido.setText("");
@@ -214,9 +242,6 @@ public class EstudianteActivity extends AppCompatActivity {
         quitarFocus();
     }
 
-    /**
-     * Quita el foco de los campos de entrada.
-     */
     private void quitarFocus() {
         etNombre.clearFocus();
         etApellido.clearFocus();
@@ -224,21 +249,11 @@ public class EstudianteActivity extends AppCompatActivity {
         etCorreo.clearFocus();
     }
 
-    /**
-     * Muestra u oculta el loader de progreso.
-     *
-     * @param mostrar true para mostrar el loader, false para ocultarlo.
-     */
     private void mostrarLoader(boolean mostrar) {
         progressBar.setVisibility(mostrar ? ProgressBar.VISIBLE : ProgressBar.GONE);
         findViewById(R.id.scrollView).setVisibility(mostrar ? ScrollView.GONE : ScrollView.VISIBLE);
     }
 
-    /**
-     * Muestra un mensaje breve en pantalla.
-     *
-     * @param mensaje Texto del mensaje a mostrar.
-     */
     private void mostrarMensaje(String mensaje) {
         Toast.makeText(this, mensaje, Toast.LENGTH_SHORT).show();
     }

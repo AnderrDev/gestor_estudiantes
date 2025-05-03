@@ -7,5 +7,6 @@ public interface EstudianteRepository {
     boolean insertarEstudiante(Estudiante estudiante);
     List<Estudiante> obtenerEstudiantes();
     Estudiante getEstudianteByCodigo(String codigo);
+    boolean deleteEstudianteByCodigo(String codigo);
 
 }

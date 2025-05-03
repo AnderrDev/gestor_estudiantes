@@ -18,7 +18,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <ScrollView
         android:id="@+id/scrollView"
@@ -40,7 +40,7 @@
             android:layout_margin="8dp"
             android:clipToPadding="false">
 
-            <!-- Nombre -->
+            <!-- Campos -->
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -50,14 +50,12 @@
                 app:boxCornerRadiusTopEnd="8dp"
                 app:boxCornerRadiusBottomStart="8dp"
                 app:boxCornerRadiusBottomEnd="8dp">
-
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etNombreEstudiante"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
             </com.google.android.material.textfield.TextInputLayout>
 
-            <!-- Apellido -->
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -68,14 +66,12 @@
                 app:boxCornerRadiusTopEnd="8dp"
                 app:boxCornerRadiusBottomStart="8dp"
                 app:boxCornerRadiusBottomEnd="8dp">
-
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etApellidoEstudiante"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
             </com.google.android.material.textfield.TextInputLayout>
 
-            <!-- Código -->
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -86,14 +82,12 @@
                 app:boxCornerRadiusTopEnd="8dp"
                 app:boxCornerRadiusBottomStart="8dp"
                 app:boxCornerRadiusBottomEnd="8dp">
-
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etCodigoEstudiante"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
             </com.google.android.material.textfield.TextInputLayout>
 
-            <!-- Email -->
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -104,7 +98,6 @@
                 app:boxCornerRadiusTopEnd="8dp"
                 app:boxCornerRadiusBottomStart="8dp"
                 app:boxCornerRadiusBottomEnd="8dp">
-
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etCorreoEstudiante"
                     android:layout_width="match_parent"
@@ -112,40 +105,82 @@
                     android:inputType="textEmailAddress" />
             </com.google.android.material.textfield.TextInputLayout>
 
-            <!-- Botón Guardar -->
-            <Button
-                android:id="@+id/btnGuardarEstudiante"
+            <!-- Botones de acciones principales -->
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
                 android:layout_marginTop="16dp"
-                android:text="Guardar Estudiante"
-                android:backgroundTint="@color/primary"
-                android:textColor="@android:color/white"
-                android:background="@drawable/rounded_button" />
+                android:weightSum="3">
 
-            <!-- Botón Listar -->
-            <Button
-                android:id="@+id/btnListarEstudiantes"
+                <Button
+                    android:id="@+id/btnGuardarEstudiante"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/guardar"
+                    android:backgroundTint="@color/primary"
+                    android:textColor="@android:color/white"
+                    android:background="@drawable/rounded_button"
+                    android:layout_marginEnd="4dp" />
+
+                <Button
+                    android:id="@+id/btnBuscarEstudiante"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/buscar"
+                    android:backgroundTint="@color/primary_light"
+                    android:textColor="@android:color/white"
+                    android:background="@drawable/rounded_button"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginEnd="4dp" />
+
+                <Button
+                    android:id="@+id/btnEliminarEstudiante"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/eliminar"
+                    android:textColor="@android:color/white"
+                    android:background="@drawable/rounded_button"
+                    android:layout_marginStart="4dp" />
+            </LinearLayout>
+
+            <!-- Botones de acciones secundarias -->
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
                 android:layout_marginTop="8dp"
-                android:text="@string/listar_estudiantes"
-                android:backgroundTint="@color/primary_light"
-                android:textColor="@android:color/white"
-                android:background="@drawable/rounded_button" />
+                android:weightSum="2">
 
-            <!-- Botón Cargar Desde API -->
-            <Button
-                android:id="@+id/btnCargarDesdeApi"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="@string/cargar_desde_ministerio"
-                android:backgroundTint="@color/primary_light"
-                android:textColor="@android:color/white"
-                android:background="@drawable/rounded_button" />
+                <Button
+                    android:id="@+id/btnListarEstudiantes"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/listar"
+                    android:backgroundTint="@color/primary_light"
+                    android:textColor="@android:color/white"
+                    android:background="@drawable/rounded_button"
+                    android:layout_marginEnd="4dp" />
 
-            <!-- Lista -->
+                <Button
+                    android:id="@+id/btnCargarDesdeApi"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/cargar_desde_api"
+                    android:backgroundTint="@color/primary_light"
+                    android:textColor="@android:color/white"
+                    android:background="@drawable/rounded_button"
+                    android:layout_marginStart="4dp" />
+            </LinearLayout>
+
+            <!-- Lista de estudiantes -->
             <ListView
                 android:id="@+id/listViewEstudiantes"
                 android:layout_width="match_parent"
